@@ -17,7 +17,6 @@ public class BinarySearchTree<T extends Comparable> {
 
     /**
      * 查找最大值的节点
-     *
      * @param root
      * @return
      */
@@ -50,7 +49,6 @@ public class BinarySearchTree<T extends Comparable> {
 
     /**
      * 查找
-     *
      * @param root
      * @param data
      * @return
@@ -95,7 +93,8 @@ public class BinarySearchTree<T extends Comparable> {
     /**
      * 删除二叉查找树上的某一个节点
      * 1. 若是叶子节点，对此节点删除不影响整体树的结构，只需修改双亲节点即可
-     * 2. 若是只有左子树或只有右子树的节点：
+     * 2. 若是只有左子树或只有右子树的节点
+     * 3. 若是左子树和右子树都在的节点
      */
     public boolean deleteBST(T data) {
         Node currentNode = root;
@@ -122,9 +121,9 @@ public class BinarySearchTree<T extends Comparable> {
             if (currentNode == root) {
                 root = null;
             } else if(isLeft){
-                parentNode.setRight(null);
-            }else{
                 parentNode.setLeft(null);
+            }else{
+                parentNode.setRight(null);
             }
             return true;
         }
@@ -174,14 +173,14 @@ public class BinarySearchTree<T extends Comparable> {
     }
 
     public static void main(String[] args) {
-        int[] src = new int[]{2, 54, 88, 43, 1, 22};
+        int[] src = new int[]{2, 54, 88, 43, 1, 22,30};
         BinarySearchTree<Integer> bst = new BinarySearchTree();
         bst.setRoot(new Node(5));
         Node root = bst.getRoot();
         for (int item : src) {
             root = bst.insertBST(root, item);
         }
-        if(bst.deleteBST(88)){
+        if(bst.deleteBST(30)){
            bst.midOrderTravel(bst.getRoot());
         }
 
