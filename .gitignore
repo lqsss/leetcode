@@ -3,3 +3,7 @@
 .settings/org.eclipse.jdt.core.prefs
 bin/
 .idea/
+src/Other/BinarySearch.java
+src/Other/FindNumsAppearOnce.java
+src/Other/Main.java
+src/Other/Main1.java
