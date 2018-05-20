@@ -13,15 +13,15 @@ public class RotateList {
         ListNode p = head;
         ListNode last = head;
         int length = 0;
-        while (p != null) {   
+        while (p != null) {
             length++;
-            if(p.next == null){
+            if (p.next == null) {
                 last = p;
             }
             p = p.next;
         }
-        k = k%length;
-        if(k ==0)
+        k = k % length;
+        if (k == 0)
             return head;
         p = head;
         ListNode right = head;
@@ -33,7 +33,7 @@ public class RotateList {
         //得到第K个位置
         right.next = null;
         last.next = head;
-        if(p == null){
+        if (p == null) {
             return head;
         }
         return p;

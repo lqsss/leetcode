@@ -13,6 +13,7 @@ public class MedianOfTwoSortedArrays {
             return (getMid(nums1, nums2, length >> 1) + getMid(nums1, nums2, (length >> 1) + 1)) * 0.5;
         } else {
             return getMid(nums1, nums2, length + 1 >> 1);
+            //0 1 2 3 4 5 6
         }
     }
 
@@ -37,8 +38,8 @@ public class MedianOfTwoSortedArrays {
     }
 
     public static void main(String[] args) {
-        int[] arr1 = new int[]{};
-        int[] arr2 = new int[]{2,3};
-        findMedianSortedArrays(arr1,arr2);
+        int[] arr1 = new int[]{1};
+        int[] arr2 = new int[]{2, 3};
+        findMedianSortedArrays(arr1, arr2);
     }
 }

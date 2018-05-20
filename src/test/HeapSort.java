@@ -22,7 +22,7 @@ public class HeapSort {
             return;
         }
         //从中间往前开始遍历，结构稳定
-        int half = (array.length - 1) / 2;
+        int half = (array.length ) / 2;
         for (int i = half; i >= 0; i--) {
             maxHeap(array, array.length, i);  //递归：比较交换
         }
@@ -45,7 +45,6 @@ public class HeapSort {
             swap(array, i, maxNode);
             maxHeap(array, length, maxNode); //继续递归maxNode，跟它的下面比较
         }
-
     }
 
     private void swap(int[] array, int i, int maxNode) {
@@ -55,7 +54,7 @@ public class HeapSort {
     }
 
     public static void main(String[] args) {
-        int[] arr = new int[]{2, 25, 31, 13, 22, 19, 56, 44};
+        int[] arr = new int[]{2,1};
         new HeapSort().sort(arr);
 
         System.out.println(Arrays.toString(arr));

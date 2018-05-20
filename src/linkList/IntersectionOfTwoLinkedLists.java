@@ -34,6 +34,7 @@ public class IntersectionOfTwoLinkedLists {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
     	ListNode p = headA;
     	ListNode q = headB;
+
     	if(p!= null && q != null && p == q){
     		return p;
     	}
@@ -66,7 +67,7 @@ public class IntersectionOfTwoLinkedLists {
     		p = p.next;
     		q = q.next;
     	}
-    	
+
     	return null;
     }
 }

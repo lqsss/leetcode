@@ -15,7 +15,7 @@ public class BinaryTreeMirror {
         TreeNode tmpNode = root.left;
         root.left = root.right;
         root.right = tmpNode;
-        if (root.left != null) {
+        if (root.left != null) {w
             Mirror(root.left);
         } 
         if (root.right != null) {
