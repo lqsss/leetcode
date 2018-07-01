@@ -16,7 +16,6 @@ public class MaximumSubarray {
             dp[i] = Math.max(dp[i-1]+nums[i],nums[i]);
             result = Math.max(result,dp[i]);
         }
-
         return result;
     }
 

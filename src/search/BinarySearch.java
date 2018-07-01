@@ -35,8 +35,8 @@ public class BinarySearch {
 
 
     public static void main(String[] args) {
-        int[] arr = new int[]{1, 5, 6, 8, 9, 23, 47};
-        System.out.println(recursion(arr, 5, 0, arr.length - 1));
-        System.out.println(noRecursion(arr, 8, 0, arr.length - 1));
+        int[] arr = new int[]{1, 5};
+        System.out.println(recursion(arr, 1, 0, arr.length - 1));
+        System.out.println(noRecursion(arr, 1, 0, arr.length - 1));
     }
 }

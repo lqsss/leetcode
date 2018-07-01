@@ -13,8 +13,8 @@ package math;
 public class Add {
     public int Add(int num1, int num2) {
         while (num2 != 0) {
-            int tmp = num1 ^ num2; //各位相加
-            num2 = (num1 & num2) << 1; // 获取进位值
+            int tmp = num1 ^ num2; //各位相加 101^111 = 010
+            num2 = (num1 & num2) << 1; // 获取进位值 (101&111)<<1 = 1010
             num1 = tmp ;  //进位值与各位相加
         }
         return num1;

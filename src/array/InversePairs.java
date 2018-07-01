@@ -7,12 +7,12 @@ package array;
  * Created by lqs on 2018/5/12.
  */
 public class InversePairs {
-    public int InversePairs(int[] array) {
+    public static int InversePairs(int[] array) {
         int res = mergeSort(array, 0, array.length - 1);
         return res;
     }
 
-    private int mergeSort(int[] array, int start, int end) {
+    private static int mergeSort(int[] array, int start, int end) {
         if (start >= end) {
             return 0;
         }
@@ -23,7 +23,7 @@ public class InversePairs {
         return (leftRes + rightRes + midRes) % 1000000007;
     }
 
-    private int mergeCore(int[] array, int start, int mid, int end) {
+    private static int mergeCore(int[] array, int start, int mid, int end) {
         int count = 0;
         int[] tmp = new int[end - start + 1];
         int i = mid;
@@ -51,5 +51,10 @@ public class InversePairs {
             array[start++] = tmp[l];
         }
         return count;
+    }
+
+    public static void main(String[] args) {
+        int[] arr= new int[]{7,5,6,4};
+        InversePairs(arr);
     }
 }

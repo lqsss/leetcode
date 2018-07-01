@@ -1,19 +1,22 @@
 package tree;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class SerializeandDeserializeBST2 {
     // Encodes a tree to a single string.
-    public static String serialize(TreeNode root) {
+    public static String Serialize(TreeNode root) {
         String data = "";
         if (root == null) {
             return "&,";
         }
-        data += root.val + "," + serialize(root.left) + serialize(root.right);
+        data += root.val + "," + Serialize(root.left) + Serialize(root.right);
         return data;
     }
 
 
     // Decodes your encoded data to tree.
-    public TreeNode deserialize(String data) {
+    public TreeNode Deserialize(String data) {
         if (data == null || data == "") {
             return null;
         }
@@ -31,15 +34,36 @@ public class SerializeandDeserializeBST2 {
         }
         String valStr = tmp[i];
         i++;
-        if(valStr.equals("&")){
+        if (valStr.equals("&")) {
             return null;
-        }else{
-            int val= Integer.parseInt(valStr);
+        } else {
+            int val = Integer.parseInt(valStr);
             TreeNode root = new TreeNode(val);
             root.left = dfs(tmp);
             root.right = dfs(tmp);
             return root;
         }
+    }
+
+
+    public static String Serialize1(TreeNode root) {
+        StringBuilder sb = new StringBuilder();
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        if (root != null)
+            queue.add(root);
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            if (node != null) {
+                queue.offer(node.left);
+                queue.offer(node.right);
+                sb.append(node.val + ",");
+            } else {
+                sb.append("#" + ",");
+            }
+        }
+        if (sb.length() != 0)
+            sb.deleteCharAt(sb.length() - 1);
+        return sb.toString();
     }
 
     public static void main(String[] args) {
@@ -52,6 +76,6 @@ public class SerializeandDeserializeBST2 {
         root.right = t2;
         t2.left = t3;
         t2.right = t4;
-        System.out.println(serialize(root));
+        System.out.println(Serialize1(root));
     }
 }

@@ -9,18 +9,19 @@ public class SortColors {
         int begin = 0;
         int end = nums.length - 1;
         while (cur <= end) {
-            if(nums[cur] == 0){
-                swap(nums,cur,begin);
+            if (nums[cur] == 0) {
+                swap(nums, cur, begin);
                 begin++;
                 cur++;
-            }else if(nums[cur] == 1){
+            } else if (nums[cur] == 1) {
                 cur++;
-            }else{
-                swap(nums,cur,end);
+            } else {
+                swap(nums, cur, end);
                 end--;
             }
         }
     }
+
     private void swap(int[] nums, int cur, int begin) {
         int tmp = nums[cur];
         nums[cur] = nums[begin];
