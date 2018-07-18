@@ -19,7 +19,7 @@ public class SortColors {
                 swap(nums,cur,end);
                 end--;
             }
-            System.out.println("123");
+            System.out.println("dev-liqiushi stash!");
         }
     }
     private void swap(int[] nums, int cur, int begin) {
