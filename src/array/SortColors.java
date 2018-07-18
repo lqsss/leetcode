@@ -19,6 +19,7 @@ public class SortColors {
                 swap(nums, cur, end);
                 end--;
             }
+            System.out.println("dev-liqiushi stash!");
         }
     }
 
