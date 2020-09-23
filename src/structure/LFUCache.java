@@ -1,6 +1,7 @@
 package structure;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class LFUCache {
 
@@ -17,7 +18,7 @@ public class LFUCache {
     /**
      * 最小频次
      */
-    private int minFreq;
+    private int minFreq = 1;
 
     /**
      * key-LinkNode 数据map
@@ -55,13 +56,17 @@ public class LFUCache {
 
         } else {
 
-            linkNode = new LinkNode(value);
+            linkNode = new LinkNode(key, value);
             linkNode.freq = 0;
-            count++;
-            if (count > capacity) {
+
+            if (count + 1 > capacity) {
                 DoubleLinkNodeList doubleLinkNodeList = freqMap.get(minFreq);
-                doubleLinkNodeList.remove(doubleLinkNodeList.dummyHead.next);
+                LinkNode toRemove = doubleLinkNodeList.dummyHead.next;
+                doubleLinkNodeList.remove(toRemove);
+                kvMap.remove(toRemove.key);
+
             }
+            count++;
         }
 
         kvMap.put(key, add2Head(linkNode));
@@ -70,7 +75,7 @@ public class LFUCache {
     private LinkNode add2Head(LinkNode linkNode) {
         Integer freq = linkNode.freq;
         linkNode.freq = linkNode.freq + 1;
-        updateMinFreq(Math.max(linkNode.freq, minFreq));
+        updateMinFreq(Math.min(linkNode.freq, minFreq));
         DoubleLinkNodeList linkNodeList = freqMap.get(freq);
         //del 当前freq
         if (linkNodeList != null) {
@@ -111,9 +116,12 @@ public class LFUCache {
 
         Integer val;
 
+        Integer key;
+
         Integer freq;
 
-        public LinkNode(Integer val) {
+        public LinkNode(Integer key, Integer val) {
+            this.key = key;
             this.val = val;
         }
     }
@@ -125,20 +133,29 @@ public class LFUCache {
 
         public DoubleLinkNodeList() {
             count = 0;
-            dummyHead = new LinkNode(-1);
+            dummyHead = new LinkNode(-1, -1);
             dummyHead.prev = null;
 
-            dummyTail = new LinkNode(-1);
+            dummyTail = new LinkNode(-1, -1);
             dummyHead.next = dummyTail;
             dummyTail.prev = dummyHead;
             dummyTail.next = null;
         }
 
         public void remove(LinkNode linkNode) {
+
             LinkNode prev = linkNode.prev;
             prev.next = linkNode.next;
             linkNode.next.prev = prev;
             count--;
+
+            if (count == 0 && linkNode.freq == minFreq) {
+                for (Map.Entry<Integer, DoubleLinkNodeList> entry : freqMap.entrySet()) {
+                    if (entry.getValue().count != 0) {
+                        minFreq = Math.min(minFreq, entry.getKey());
+                    }
+                }
+            }
         }
 
 
