@@ -58,29 +58,28 @@ public class LFUCache {
             linkNode = new LinkNode(value);
             linkNode.freq = 0;
             count++;
-            if(count > capacity){
+            if (count > capacity) {
                 DoubleLinkNodeList doubleLinkNodeList = freqMap.get(minFreq);
                 doubleLinkNodeList.remove(doubleLinkNodeList.dummyHead.next);
             }
         }
 
-        kvMap.put(key,add2Head(linkNode));
+        kvMap.put(key, add2Head(linkNode));
     }
 
     private LinkNode add2Head(LinkNode linkNode) {
         Integer freq = linkNode.freq;
         linkNode.freq = linkNode.freq + 1;
+        updateMinFreq(Math.max(linkNode.freq, minFreq));
         DoubleLinkNodeList linkNodeList = freqMap.get(freq);
         //del 当前freq
         if (linkNodeList != null) {
             linkNodeList.remove(linkNode);
 
             //update freq
-            if (freq == minFreq && linkNodeList.count == 0) {
-                updateMinFreq(linkNode.freq);
-            }
+
         } else {
-            if(freq != 0){
+            if (freq != 0) {
                 linkNodeList = new DoubleLinkNodeList();
                 freqMap.put(linkNode.freq, linkNodeList);
             }
@@ -141,7 +140,6 @@ public class LFUCache {
             linkNode.next.prev = prev;
             count--;
         }
-
 
 
         public void add(LinkNode linkNode) {
